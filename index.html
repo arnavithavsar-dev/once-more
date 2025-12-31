@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffd6e8, #fef6ff);
+}
+
+/* ---------- COMMON ---------- */
+.page {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.page.active {
+  display: flex;
+}
+
+button {
+  background: #ff7eb3;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #ff5f9e;
+}
+
+.secret {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* ---------- FLOATING HEARTS ---------- */
+.heart {
+  position: absolute;
+  color: rgba(255, 105, 180, 0.6);
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* ---------- PAGE 2 ---------- */
+#p2 {
+  padding: 20px;
+}
+
+.intro {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.emoji-bar {
+  display: flex;
+  gap: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.image-box {
+  position: absolute;
+  width: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+.image-box img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.image-box p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.show {
+  opacity: 1;
+}
+
+/* Positions */
+.top-right { top: 40px; right: 30px; }
+.bottom-right { bottom: 40px; right: 30px; }
+.top-left { top: 40px; left: 30px; }
+.bottom-left { bottom: 40px; left: 30px; }
+
+/* Center image */
+.center-box {
+  position: relative;
+  width: 260px;
+  text-align: center;
+}
+
+.center-box img {
+  width: 100%;
+  border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <h1>hieee babyyyy…</h1>
+  <p>🤭 me tuzya sathi ek surprise banavla ahe 🫶🏻</p>
+  <button onclick="go(2)">Mala baghych ahe 😭</button>
+  <div class="secret" onclick="alert('hehe you’re impatient 😼')">🐾</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div id="introBlock">
+    <div class="intro">Before we move forward, look at this 💕</div>
+    <div class="emoji-bar">
+      <span onclick="showImage(1)">🤭</span>
+      <span onclick="showImage(2)">😫</span>
+      <span onclick="showImage(3)">🫣</span>
+      <span onclick="showImage(4)">😌</span>
+      <span onclick="showCenter()">🧿</span>
+    </div>
+  </div>
+
+  <!-- Corner Images -->
+  <div class="image-box top-right" id="img1">
+    <img src="img1.jpg">
+    <p>bapre ghabarlich me maza chota don 🤌🏻</p>
+  </div>
+
+  <div class="image-box bottom-right" id="img2">
+    <img src="img2.jpg">
+    <p>mazhya bala la kushit ghete awww 🫂</p>
+  </div>
+
+  <div class="image-box top-left" id="img3">
+    <img src="img3.jpg">
+    <p>..mmmmm yummmyyyy 👉🏻👈🏻🤤</p>
+  </div>
+
+  <div class="image-box bottom-left" id="img4">
+    <img src="img4.jpg">
+    <p>asch mazhya samor ghabarun rahaych Samjla 💋</p>
+  </div>
+
+  <!-- Center Image -->
+  <div id="centerBlock" style="display:none">
+    <div class="center-box">
+      <img src="img5.jpg">
+      <p>I will loe u forever ♾️</p>
+      <button onclick="go(3)">Next ➡️</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function go(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('p' + n).classList.add('active');
+}
+
+function showImage(n) {
+  document.getElementById('img' + n).classList.add('show');
+}
+
+function showCenter() {
+  document.getElementById('introBlock').style.display = 'none';
+  document.getElementById('centerBlock').style.display = 'block';
+}
+
+/* Floating hearts */
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerHTML = '💗';
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.fontSize = (12 + Math.random() * 20) + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
